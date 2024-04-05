@@ -18,7 +18,7 @@
 
     `Query apresentada:`
 
-    ```json
+    ```
         select count(distinct origin_registration_id), new_status, old_status,
         from registration_fact
         where new_status == (1, 2, 3, 4, 5, 6)
@@ -36,7 +36,7 @@
 
     ***Abaixo, a query corrigida:***
 
-    ```json
+    ```
         select count(distinct origin_registration_id), new_status, old_status
         from registration_fact
         where new_status in (1, 2, 3, 4, 5, 6)
@@ -45,6 +45,9 @@
     ```
 
     **Descrição da query:**
-    ```json
-        Selecione os valores das colunas "new_status" e "old_status" da tabela "registration_fact", cujos valores de "new_status" estejam contidos na lista apresentada. Ordene, de forma crescente, primeiro pelo valor de "new_status" e caso haja nessecidade, pelo valor de "old_status", depois agrupe o resultado pelos valores iguais de "new_status". Por fim, em uma nova coluna traga a contagem dos distintos valores de "origin_registration_id" trazidos na consulta.
+    ```
+        Selecione os valores das colunas "new_status" e "old_status" da tabela "registration_fact", cujos valores de
+     "new_status" estejam contidos na lista apresentada. Ordene, de forma crescente, primeiro pelo valor de "new_status"
+     e caso haja nessecidade, pelo valor de "old_status", depois agrupe o resultado pelos valores iguais de "new_status".
+     Por fim, em uma nova coluna traga a contagem dos distintos valores de "origin_registration_id" trazidos na consulta.
     ```
