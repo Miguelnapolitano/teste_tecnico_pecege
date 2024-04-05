@@ -20,6 +20,7 @@ def get_first_hundred():
             except Exception as e:
                 print(e)
     
+    create_fifty_df(first_hundred_list[0:50])
     create_poke_type_chart(first_hundred_list)
 
 
@@ -63,7 +64,21 @@ def create_poke_type_chart(first_hundred_list):
     plt.xlabel("Types")
     plt.bar_label(bars)
     plt.show()
+    
 
+def create_fifty_df(fifty_list):
+    """
+    Recieves first fifty pokemons and return the print of dataframe of 
+    this data.
+
+    Params:
+        fifty_list: A list with first fifty pokemons info.
+
+    """
+
+    df = pd.DataFrame(fifty_list)
+
+    return print(df)
 
 if __name__ == "__main__":
     get_first_hundred()
