@@ -19,9 +19,9 @@ def get_first_hundred():
                 first_hundred_list.append(pokemon_type)
             except Exception as e:
                 print(e)
-    
-    create_fifty_df(first_hundred_list[0:50])
+
     create_poke_type_chart(first_hundred_list)
+    create_fifty_df(first_hundred_list[0:50])
 
 
 def get_pokemon_type(id):
@@ -43,10 +43,10 @@ def get_pokemon_type(id):
     return pokemon_info
 
 
-def create_poke_type_chart(first_hundred_list):  
+def create_poke_type_chart(first_hundred_list):
     """
-    With the received list of first hundred Pokemons, creates a 
-    dataframe to feed a bar chart with the count of dominant types 
+    With the received list of first hundred Pokemons, creates a
+    dataframe to feed a bar chart with the count of dominant types
     occurrences using matplotlib library.
 
     Params:
@@ -57,18 +57,21 @@ def create_poke_type_chart(first_hundred_list):
     dominant_types_list = [x["dominant_type"] for x in first_hundred_list]
     df = pd.DataFrame(data={"Dominant Type": dominant_types_list})
     counts = df["Dominant Type"].value_counts()
-    result_df = pd.DataFrame({'Dominant Type': counts.index, 'count': counts.values})
-    bars = plt.bar(result_df["Dominant Type"], result_df["count"])
+    df_result = pd.DataFrame(
+        {'Dominant Type': counts.index, 'count': counts.values}
+        )
+    bars = plt.bar(df_result["Dominant Type"], df_result["count"])
     plt.title("Dominant Types of PokeAPI's First 100 Pokemon")
     plt.ylabel("Ocurrences")
     plt.xlabel("Types")
     plt.bar_label(bars)
+    plt.xticks(rotation=45)
     plt.show()
-    
+
 
 def create_fifty_df(fifty_list):
     """
-    Recieves first fifty pokemons and return the print of dataframe of 
+    Recieves first fifty pokemons and return the print of dataframe of
     this data.
 
     Params:
@@ -82,4 +85,3 @@ def create_fifty_df(fifty_list):
 
 if __name__ == "__main__":
     get_first_hundred()
-

@@ -28,12 +28,12 @@
 
     Esta não é uma query funcional. Alguns pontos devem ser corrigidos
     
-    - A vírgula ao final do "select" causa um erro, pois o interpretador estará esperando um novo nome de coluna para a seleção, porém, inicia-se a instrução "from";
-    - O operador "==" não existe no SQL, se o desejo e que os valores de "new_status" trazidos estejam contidos na lista sugerida, deve-se ultilizar o operador "IN";
-    - Uma vez que foi definida uma seleção de colunas específicar da tabela, é necessário passálas à cláusula "ORDER BY" para que o interpretador possa ordenar na ordem passada os valores da primeira coluna que serão iguais.
+    - A vírgula ao final do "select", logo após "old_status", causa um erro, pois o interpretador irá esperar um nome de coluna para a seleção, mas, inicia-se a instrução "from";
+    - O operador "==" não existe no SQL, se o desejo é que os valores de "new_status" estejam contidos na lista, deve-se ultilizar o operador "IN";
+    - Uma vez definida a seleção de colunas, é necessário indicar a ordem de prioridade de ordenação para à cláusula "ORDER BY", sendo assim, todas as colunas selecionadas devem constar nesta cláusula.
 
 
-    ***Abaixo, a query corrigida:***
+    ***Query análoga e funcional:***
 
     ```
         select count(distinct origin_registration_id), new_status, old_status
@@ -45,10 +45,11 @@
 
     **Descrição da query:**
     ```
-        Selecione os valores das colunas "new_status" e "old_status" da tabela "registration_fact", cujos valores de
-     "new_status" estejam contidos na lista apresentada. Ordene, de forma crescente, primeiro pelo valor de "new_status"
-     e caso haja nessecidade, pelo valor de "old_status", depois agrupe o resultado pelos valores iguais de "new_status".
-     Por fim, em uma nova coluna traga a contagem dos distintos valores de "origin_registration_id" trazidos na consulta.
+        Selecione os valores das colunas "new_status" e "old_status" da tabela "registration_fact", onde os valores de
+    "new_status" devem estar contidos na lista apresentada. 
+    Ordene, de forma crescente, primeiro pelo valor de "new_status" e, caso seja necessário, pelo valor de "old_status" também.
+    Agrupe o resultado pelos valores iguais de "new_status".
+    Por fim, em uma nova coluna traga a contagem dos distintos valores de "origin_registration_id" trazidos na consulta.
     ```
 
 2. **Gráfico de Barras com os tipos dos primeiros 100 pokemons**   
@@ -56,6 +57,7 @@
     **Descrição da solução**
 
     Para resolver a segunda e terceira partes do desafio, criei um script em python para gerar os resultados pedidos. Abaixo está o passo a passo para executá-lo.
+    Entretando, para facilitar, é possível executá-lo on-line pelo Google Colab, no link: <a href="https://colab.research.google.com/drive/1fas33TnnkZXkBRE0OWb7Q9gM5wQTU4Vj?usp=sharing">Notebook Desafio</a>.
     
     **Como executar**
 
@@ -69,25 +71,25 @@
 
     **O que acontecerá?**   
            
-    O script irá executar, o que pode demorar entre 4 e 10 minutos devido a todas as 100 requisições na API pokemon. A velocidade de execução irá depender do poder de processamento do computador e da velocidade de conexão com a internet.
+    O script irá executar, o que pode demorar entre 2 e 6 minutos devido a todas as 100 requisições na API-Pokemon. A velocidade de execução irá depender do poder de processamento do computador e da velocidade de conexão com a internet.
     Ao fim da execução duas coisas irão acontecer:   
-        1 - Abrirá em seu computador uma janela com o gráfico de barras solicitado no desafio 2;  
+        1 - Abrirá uma janela em seu computador com o gráfico de barras, reolução do desafio 2;  
         2 - No seu terminal irá imprimir o dataframe referente ao desafio 3;
 
-3. **Datafram com dados dos primeiro 50 pokemons**   
+3. **Dataframe com dados dos primeiro 50 pokemons**   
 
     **Descrição da solução**
 
     Para resolver este desafio, criei um script em python para gerar os resultados pedidos.   
-    Você irá encontrar as informações de como executar acima, na resolução do desafio 2.
+    Você irá encontrar as informações de como executar na resolução do desafio 2.
 
-2. **Converter de Flask para FastAPI**   
+4. **Converter de Flask para FastAPI**   
 
     **Descrição da solução**
 
-    Considerando que o código fornecido é o que está contido como "A Minimal Application" da documentação do Flask. Trouxe como solução o trecho análogo da documentação do FastAPI, sendo assim, a resposta ao desafio está logo abaixo.
+    Considerando que o código fornecido é o que está contido como "A Minimal Application" da documentação do Flask. Trouxe como solução o trecho análogo da documentação do FastAPI, sendo assim, a resposta ao desafio é:
      
-    ***Rota transformada para FastAPI***
+    ***Código para FastAPI***
 
     ```json
         from fastapi import FastAPI    
